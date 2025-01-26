@@ -30,7 +30,8 @@ const api = (axiosInstance: AxiosInstance) => {
           // Perform redirection to the login page or any other desired page
           const refresh = cookies.get('refresh')
           await refreshApi.exec(refresh)
-          cookies.set('access', refreshApi?.data?.value?.data)
+          if (refreshApi?.data?.value?.data)
+            cookies.set('access', refreshApi?.data?.value?.data)
           statusRefreshRequest = IDLE
 
           if (refreshApi?.statusError) {

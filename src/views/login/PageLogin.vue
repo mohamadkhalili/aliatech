@@ -22,7 +22,7 @@ const loginApi = useApi(postLogin)
 
 async function submit() {
   await loginApi.exec(email?.value, password?.value)
-  if (loginApi?.statusSuccess) {
+  if (loginApi?.statusSuccess && loginApi?.data?.value?.data) {
     cookies.set('access', loginApi?.data?.value?.data?.access)
     cookies.set('refresh', loginApi?.data?.value?.data?.refresh)
     router.push('/')
